@@ -1,0 +1,190 @@
+Gerenciador:
+    current: 'home'
+
+    Home:
+    Jogo:
+
+<Home>: #Menu inicial
+    name: "home"
+    BoxLayout: #Conteúdo
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+
+        BoxLayout: #Cabecalho
+            orientation: 'horizontal'
+            spacing: 10
+            padding: 10
+            size_hint_y: 0.2
+
+            Image:#Logo
+                size_hint_x: None
+                width: self.height
+                fit_mode: "contain"
+                source: "img/Logo.png"
+
+            Label:#Título
+                size_hint_x: 0.8
+                bold: True
+                font_size: 24
+                text: 'Adivinhe o número'
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.73, 0.25)
+                font_name: 'fonts/GamePlayed.otf'
+        
+        Label: #Título regras
+            size_hint_y: 0.1
+            text: 'Regras do Jogo:'
+            bold: True
+            halign: 'left'
+            valign: 'top'
+            text_size: self.size
+            padding: (0, 10)
+            font_size: 20
+            font_name: 'fonts/DMSans.ttf'
+
+        Label: #Regras
+            size_hint_y: 0.5
+            halign: 'left'
+            valign: 'top'
+            text_size: self.size
+            font_size: 16
+            text: 'Você deve adivinhar um número aleatório sorteado pelo sistema. A cada palpite, o sistema informará se o número correto é maior ou menor que o valor escolhido. \nVocê terá até 10 tentativas para acertar, independentemente da dificuldade. \n\nDificuldades: \n\n - Fácil: números de 1 a 25 \n - Médio: números de 1 a 60 \n - Difícil: números de 1 a 100'
+            padding: (0, 10)
+            font_name: 'fonts/DMSans.ttf'
+
+        BoxLayout: #Campo de botões
+            size_hint_y: 0.2
+
+            Button: #Fácil
+                text: 'Fácil'
+                background_color: (0.25, 0.95, 0.26)
+                font_name: 'fonts/DMSans.ttf'
+                bold: True
+                font_size: 20
+                #on_press: root.manager.current = "jogo"
+                on_press: root.comecar("Fácil")
+
+            Button: #Médio
+                text: 'Médio'
+                background_color: (0.95, 0.73, 0.25)
+                font_name: 'fonts/DMSans.ttf'
+                bold: True
+                font_size: 20
+                #on_press: root.manager.current = "jogo"
+                on_press: root.comecar("Médio")
+
+            Button: #Difícil
+                text: 'Difícil'
+                background_color: (0.95, 0.12, 0.12)
+                font_name: 'fonts/DMSans.ttf'
+                bold: True
+                font_size: 20
+                #on_press: root.manager.current = "jogo"
+                on_press: root.comecar("Difícil")
+
+
+<Jogo>:
+    name: 'jogo'
+    BoxLayout: #Conteúdo
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+
+        BoxLayout: #Cabecalho
+            orientation: 'horizontal'
+            spacing: 10
+            padding: 10
+            size_hint_y: 0.2
+
+            Image:#Logo
+                size_hint_x: None
+                width: self.height
+                fit_mode: "contain"
+                source: "img/Logo.png"
+
+            Label:#Título
+                size_hint_x: 0.8
+                bold: True
+                font_size: 24
+                text: 'Adivinhe o número'
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                color: (0.95, 0.73, 0.25)
+                font_name: 'fonts/GamePlayed.otf'
+
+        #Linha 2
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint_y: 0.5
+
+            Label:
+                size_hint_y: 0.1
+                text: "Seu número está entre: "
+                font_name: 'fonts/DMSans.ttf'
+                bold: True
+                font_size: 24
+
+            Label:
+                id: dica
+                bold: True
+                font_size: 60
+                text: "25 > ? > 48"
+                font_name: 'fonts/DMSans.ttf'
+
+            Label:
+                id: feedback
+                bold: True
+                font_size: 20
+                text: "Digite seu primeiro palpite!"
+                font_name: 'fonts/DMSans.ttf'
+
+        BoxLayout: # Informações
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint_y: 0.1
+
+            Label:
+                id: tentativa
+                text: "Tentativas: 0"
+                font_name: 'fonts/DMSans.ttf'
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+
+            Label:
+                id: dificuldade
+                text: "Dificuldade: Difícil"
+                font_name: 'fonts/DMSans.ttf'
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            
+
+        #Input
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint_y: 0.2
+
+            TextInput:
+                id: palpite
+                size_hint_x: 0.8
+                #text: 'Qual é o seu palpite?'
+                hint_text: "Qual é o seu palpite?"
+                font_name: 'fonts/DMSans.ttf'
+                font_size: 20
+                input_filter: 'int'
+            
+            Button:
+                size_hint_x: 0.2
+                text: 'Enviar'
+                on_press: root.palpite()
+                background_color: (0.95, 0.73, 0.25)
+                font_name: 'fonts/DMSans.ttf'
+                bold: True
+                font_size: 20
