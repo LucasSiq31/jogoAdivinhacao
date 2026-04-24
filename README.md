@@ -17,7 +17,7 @@ Você deve adivinhar um número aleatório sorteado pelo sistema. A cada palpite
 
 ### 🌐 Visite meu projeto
 
-Baixe a pasta desse reposittório do github e execute o arquivo ```Jogo.exe```
+Baixe a pasta desse repositório do github e execute o arquivo ```Jogo.exe```
 
 ---
 
